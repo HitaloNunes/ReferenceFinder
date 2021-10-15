@@ -21,7 +21,14 @@ namespace ReferenceFinder.Controllers
             domBiblia = new DominioBiblia();
             int i, j;
             StringBuilder retorno = new StringBuilder();
-            Referencia referencia = new Referencia(Busca);
+            Referencia referencia;
+            if (Busca.Contains(' ') && Busca.Contains(':'))
+            {
+                referencia = new Referencia(Busca);
+            } else
+            {
+                return "Sua referência não está dentro dos padrões!";
+            }
             var biblia = domBiblia.abrirBiblia();
             for (i = 0; i < biblia.Livros.Length; i++)
             {
@@ -59,6 +66,10 @@ namespace ReferenceFinder.Controllers
                     }
                     break;
                 }
+            }
+            if (retorno.ToString() == "")
+            {
+                retorno.Append("Referência não encontrada!");
             }
 
             return retorno.ToString();
