@@ -2,7 +2,9 @@
 
 Uma api simples criada a partir do JSON disponibilizado pelo Thiago Bodruk (https://github.com/thiagobodruk) no projeto https://github.com/thiagobodruk/biblia
 
-Tem uma única função de buscar um texto a partir de uma referência escrita.
+Tem as funções de buscar um texto a partir de referência escrita e também a partir de trechos.
+
+~~Tem uma única função de buscar um texto a partir de uma referência escrita.~~
 
 ## Instruções e Recomendações
 As referências são padronizadas, todas seguindo o padrão de: [Abreviação do nome do Livro]<espaço>[Número do capítulo]:[Número do Versículo / Números dos Versículos separados por vírgula e sem espaço]
@@ -17,3 +19,8 @@ As referências são padronizadas, todas seguindo o padrão de: [Abreviação do
 1. Jo = João<br>Jó = Jó
 2. Livros numéricos (I Reis, II Reis...) representam seu índice por algarismos mesmo (1Rs, 2Rs)
 3. A versão presente até o momento é a Almeida Corrigida e Fiel (ACF)
+
+## Release Notes
+### 19/10/2021
+* **Branch: AdaptacaoPesquisa** <br />
+Os objetos foram criados para que o retorno da API agora fosse serializado. Sendo transmitidos a partir do JSON, foi possível implementar a pesquisa por texto.
