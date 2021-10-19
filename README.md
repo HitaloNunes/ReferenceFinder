@@ -7,8 +7,8 @@ Tem as funções de buscar um texto a partir de referência escrita e também a 
 ## Instruções e Recomendações
 Atualmente, a API está contando com dois Endpoints:
 
-*/api/Reference/buscarReferencia
-*/api/Reference/buscarTrecho
+* /api/Reference/buscarReferencia* <br />
+* /api/Reference/buscarTrecho* <br />
 
 Os dois receberão um json a partir do método POST
 ### Endpoint _buscarReferencia_
