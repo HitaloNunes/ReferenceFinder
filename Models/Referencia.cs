@@ -12,6 +12,7 @@ namespace ReferenceFinder.Models
         public int Capitulo { get; set; }
         public int Versiculo { get; set; }
         public int[] Versiculos { get; set; }
+        public string Trecho { get; set; }
 
         public Referencia(string referencia)
         {

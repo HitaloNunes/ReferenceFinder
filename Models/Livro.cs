@@ -9,8 +9,6 @@ namespace ReferenceFinder.Models
     public class Livro
     {
         public string abbrev { get; set; }
-        //public string book { get; set; }
-        //public List<List<string>> chapters { get; set; }
         public string[][] chapters { get; set; }
     }
 }
