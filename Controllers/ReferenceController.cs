@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ReferenceFinder.Dominio;
 using ReferenceFinder.Models;
 using System;
@@ -15,12 +16,14 @@ namespace ReferenceFinder.Controllers
     public class ReferenceController : ControllerBase
     {
         DominioBiblia domBiblia;
+        DominioVersiculo domVersiculo;
+        DominioResultadoPesquisa domResult;
         [HttpPost]
+        [Route("/api/[controller]/[action]")]
         public ActionResult<string>buscarReferencia([FromBody]string Busca)
         {
             domBiblia = new DominioBiblia();
-            int i, j;
-            StringBuilder retorno = new StringBuilder();
+            domVersiculo = new DominioVersiculo();
             Referencia referencia;
             if (Busca.Contains(' ') && Busca.Contains(':'))
             {
@@ -30,49 +33,45 @@ namespace ReferenceFinder.Controllers
                 return "Sua referência não está dentro dos padrões!";
             }
             var biblia = domBiblia.abrirBiblia();
-            for (i = 0; i < biblia.Livros.Length; i++)
+            if (referencia.Versiculo > 0)
             {
-                if(biblia.Livros[i].abbrev == referencia.Livro)
+                Texto texto = domVersiculo.retornarVersiculo(biblia, referencia);
+                switch (texto.Versos[0].Verso)
                 {
-                    if(biblia.Livros[i].chapters[referencia.Capitulo - 1].Length <= referencia.Versiculo)
-                    {
-                        retorno.Append("Versículo fora do alcance!");
-                    }
-                    else
-                    {
-                        if (referencia.Versiculos != null)
-                        {
-                            for (j = 0; j < referencia.Versiculos.Length; j++)
-                            {
-                                if (biblia.Livros[i].chapters[referencia.Capitulo - 1].Length <= referencia.Versiculos[j] - 1)
-                                {
-                                    retorno = new StringBuilder();
-                                    retorno.Append("Texto fora do alcance!");
-                                    break;
-                                } else
-                                {
-                                    retorno.Append(referencia.Versiculos[j] + ". " + biblia.Livros[i].chapters[referencia.Capitulo - 1][referencia.Versiculos[j] - 1]);
-                                    if (j < referencia.Versiculos.Length - 1)
-                                    {
-                                        retorno.AppendLine();
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            retorno.Append(referencia.Versiculo + ". " + biblia.Livros[i].chapters[referencia.Capitulo - 1][referencia.Versiculo - 1]);
-                        }
-                    }
-                    break;
+                    case "Livro não Encontrado!":
+                        return texto.Versos[0].Verso;
+                        break;
+                    case "Capítulo não Encontrado!":
+                        return texto.Versos[0].Verso;
+                        break;
+                    case "Versículo não Encontrado!":
+                        return texto.Versos[0].Verso;
+                        break;
+                    default:
+                        return JsonConvert.SerializeObject(texto);
+                        break;
                 }
-            }
-            if (retorno.ToString() == "")
+            } else
             {
-                retorno.Append("Referência não encontrada!");
+                Texto texto = domVersiculo.retornarVersiculos(biblia, referencia);
+                return JsonConvert.SerializeObject(texto);
+            }
+        }
+
+        [HttpPost]
+        [Route("/api/[controller]/[action]")]
+        public ActionResult<string> buscarTrecho([FromBody] string Trecho)
+        {
+            domBiblia = new DominioBiblia();
+            domResult = new DominioResultadoPesquisa();
+            var biblia = domBiblia.abrirBiblia();
+            var resultado = domResult.buscarResultados(biblia, Trecho);
+            if (resultado.Resultados.Length == 0)
+            {
+                return "Nenhum Trecho Encontrado!";
             }
 
-            return retorno.ToString();
+            return JsonConvert.SerializeObject(resultado);
         }
     }
 }
