@@ -19,7 +19,7 @@ namespace ReferenceFinder.Controllers
         DominioVersiculo domVersiculo;
         DominioResultadoPesquisa domResult;
         [HttpPost]
-        [Route("/api/[controller]/[action]")]
+        [Route("buscarReferencia")]
         public ActionResult<string>buscarReferencia([FromBody]string Busca)
         {
             domBiblia = new DominioBiblia();
@@ -59,7 +59,8 @@ namespace ReferenceFinder.Controllers
         }
 
         [HttpPost]
-        [Route("/api/[controller]/[action]")]
+        //[Route("/api/[controller]/[action]")]
+        [Route("buscarTrecho")]
         public ActionResult<string> buscarTrecho([FromBody] string Trecho)
         {
             domBiblia = new DominioBiblia();
