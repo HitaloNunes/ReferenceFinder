@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace ReferenceFinder.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ReferenceController : ControllerBase
     {
@@ -20,7 +21,7 @@ namespace ReferenceFinder.Controllers
         DominioResultadoPesquisa domResult;
         [HttpGet]
         [Route("buscarReferencia")]
-        public ActionResult<string>buscarReferencia(string Busca)
+        public ActionResult<string> buscarReferencia(string Busca)
         {
             domBiblia = new DominioBiblia();
             domVersiculo = new DominioVersiculo();
