@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'referencefinder'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C3C8B89361A941988CBCCDADA5135B05 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_95B15D11D60E4D94A547A136B53E3B76 }}
           package: .
