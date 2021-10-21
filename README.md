@@ -1,14 +1,15 @@
 # ReferenceFinder
 
-Uma api simples criada a partir do JSON disponibilizado pelo Thiago Bodruk (https://github.com/thiagobodruk) no projeto https://github.com/thiagobodruk/biblia
+Uma api simples criada a partir do JSON disponibilizado pelo Thiago Bodruk (https://github.com/thiagobodruk) no projeto https://github.com/thiagobodruk/biblia.
+Atualização 21/10/2021
 
 Tem as funções de buscar um texto a partir de referência escrita e também a partir de trechos.
 
 ## Instruções e Recomendações
 Atualmente, a API está contando com dois Endpoints:
 
-* /api/Reference/buscarReferencia* <br />
-* /api/Reference/buscarTrecho* <br />
+* /Reference/buscarReferencia* <br />
+* /Reference/buscarTrecho* <br />
 
 Os dois receberão um json a partir do método POST
 ### Endpoint _buscarReferencia_
@@ -32,3 +33,7 @@ As referências são padronizadas, todas seguindo o padrão de: [Abreviação do
 ### 19/10/2021
 * **Branch: AdaptacaoPesquisa** <br />
 Os objetos foram criados para que o retorno da API agora fosse serializado. Sendo transmitidos a partir do JSON, foi possível implementar a pesquisa por texto.
+
+### 21/10/2021
+* **Branch: _Sem Branch, não houveram muitas atualizações no código_** <br />
+Após alguns testes (muitos... vejam aí na timelime de commits), consegui subir a API para o Azure! Agora temos domínio online disponível até algum momento no espaço tempo (não sei até quando, mas já está online). Neste caso, todos os Endpoints devem ser precedidos de: _https://referencial.azurewebsites.net_
