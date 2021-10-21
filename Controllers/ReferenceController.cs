@@ -18,9 +18,9 @@ namespace ReferenceFinder.Controllers
         DominioBiblia domBiblia;
         DominioVersiculo domVersiculo;
         DominioResultadoPesquisa domResult;
-        [HttpPost]
+        [HttpGet]
         [Route("buscarReferencia")]
-        public ActionResult<string>buscarReferencia([FromBody]string Busca)
+        public ActionResult<string>buscarReferencia(string Busca)
         {
             domBiblia = new DominioBiblia();
             domVersiculo = new DominioVersiculo();
