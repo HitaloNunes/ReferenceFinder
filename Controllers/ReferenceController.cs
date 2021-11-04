@@ -19,9 +19,9 @@ namespace ReferenceFinder.Controllers
         DominioBiblia domBiblia;
         DominioVersiculo domVersiculo;
         DominioResultadoPesquisa domResult;
-        [HttpPost]
+        [HttpGet]
         [Route("buscarReferencia")]
-        public ActionResult<string> buscarReferencia([FromBody]string Busca)
+        public Texto buscarReferencia(string Busca)
         {
             domBiblia = new DominioBiblia();
             domVersiculo = new DominioVersiculo();
@@ -31,7 +31,7 @@ namespace ReferenceFinder.Controllers
                 referencia = new Referencia(Busca);
             } else
             {
-                return "Sua referência não está dentro dos padrões!";
+                return null;
             }
             var biblia = domBiblia.abrirBiblia();
             if (referencia.Versiculo > 0)
@@ -40,22 +40,22 @@ namespace ReferenceFinder.Controllers
                 switch (texto.Versos[0].Verso)
                 {
                     case "Livro não Encontrado!":
-                        return texto.Versos[0].Verso;
+                        return texto;
                         break;
                     case "Capítulo não Encontrado!":
-                        return texto.Versos[0].Verso;
+                        return texto;
                         break;
                     case "Versículo não Encontrado!":
-                        return texto.Versos[0].Verso;
+                        return texto;
                         break;
                     default:
-                        return JsonConvert.SerializeObject(texto);
+                        return texto;
                         break;
                 }
             } else
             {
                 Texto texto = domVersiculo.retornarVersiculos(biblia, referencia);
-                return JsonConvert.SerializeObject(texto);
+                return texto;
             }
         }
 
