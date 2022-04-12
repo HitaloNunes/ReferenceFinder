@@ -1,7 +1,6 @@
 # ReferenceFinder
 
 Uma api simples criada a partir do JSON disponibilizado pelo Thiago Bodruk (https://github.com/thiagobodruk) no projeto https://github.com/thiagobodruk/biblia.
-<br /><br />***Agora também disponível no prefixo: _https://referencial.azurewebsites.net_***
 
 Tem as funções de buscar um texto a partir de referência escrita e também a partir de trechos.
 
